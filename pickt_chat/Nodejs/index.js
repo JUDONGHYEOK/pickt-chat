@@ -9,7 +9,6 @@ const Chat = require('./schemas/chat');
 
 const room=io.of('/room');
 const chat=io.of('/chat');
-connect();
 room.on('connection',function(socket){
   var json=new Object;
   console.log('room 네임스페이스에 접속');
@@ -17,10 +16,6 @@ room.on('connection',function(socket){
     console.log('새로운 ROOM');
 
     try {
-    const newRoom = Room.create({
-      roomNumber: room['roomnumber'],
-      owner: room['user'],
-    });
     json.exist="false"
     socket.emit('existedRoom',json);
   } catch (error) {
